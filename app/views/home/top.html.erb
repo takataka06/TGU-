@@ -1,3 +1,20 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
-<button type="button" class="btn">Base class</button>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h1 class="card-title mb-4">Welcome to TGU掲示板!</h1>
+          <p class="card-text mb-4">
+            このアプリは東北学院大学生のつぶやきを設けた場所です。<br>
+            アプリの詳細は右上にあるAboutから見ることができます。<br>
+            新規の方は下のサインアップから新規登録してください。
+          </p>
+          <div class="d-flex justify-content-center gap-3">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-lg" %>
+            <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-success btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
