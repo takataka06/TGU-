@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>TGU 掲示板</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -30,7 +30,7 @@
         <% if user_signed_in? %>
         <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "投稿", posts_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>
         <li class="nav-item"><%= button_to "ログアウト",  destroy_user_session_path,method: :delete, class: "nav-link" %></li>
         <% else %>
         <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
@@ -42,7 +42,12 @@
     </div>
   </div>
   </header>
-  
+  <% flash.each do |key, message| %>
+  <div class="alert alert-<%= key == "notice" ? "info" : "danger" %>">
+    <%= message %>
+  </div>
+<% end %>
+
     <%= yield %>
     <footer class="b text-muted text-center py-3 mt-5">
   © 2025 Created by takataka06

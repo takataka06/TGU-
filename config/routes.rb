@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#top'
   get "about" => "home#about", as: "about"
   resources :posts
+  resources :users,only: [:edit,:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

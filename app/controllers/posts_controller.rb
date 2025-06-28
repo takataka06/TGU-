@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts =Post.all
+    @posts =Post.order(created_at: :desc)
     @post = Post.new
   end
 
@@ -9,6 +9,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post =Post.find(params[:id])
+  
   end
 
   def edit
@@ -27,8 +29,18 @@ class PostsController < ApplicationController
     end
   end
   def destroy
+    post =Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path,notice: "投稿を削除しました"
   end
   def update
+    @post =Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to posts_path,notice: "投稿を更新しました"
+    else
+      @posts =Post.all
+      render :index
+    end
   end
   private
 
