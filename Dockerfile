@@ -13,3 +13,4 @@ RUN apk del build-packages
 ADD . /myapp
 EXPOSE 4000
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
