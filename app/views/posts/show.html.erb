@@ -1,18 +1,23 @@
 <div class="container my-5">
   <div class="card shadow-sm">
+    <!-- ヘッダー -->
     <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
       <h4 class="mb-0"><%= @post.title %></h4>
       <small>
         <% if @post.user && @post.user.name.present? %>
-          <i class="bi bi-person"></i> ユーザー名:<%= @post.user.name %>
+          <i class="bi bi-person"></i> ユーザー名: <%= @post.user.name %>
         <% else %>
-          <i class="bi bi-person"></i> ユーザー名:名無し
+          <i class="bi bi-person"></i> ユーザー名: 名無し
         <% end %>
       </small>
     </div>
+
+    <!-- 本文 -->
     <div class="card-body">
       <p class="card-text fs-5"><%= simple_format(@post.body) %></p>
     </div>
+
+    <!-- フッター（編集・削除） -->
     <div class="card-footer text-muted d-flex justify-content-between">
       <span>投稿日: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
       <% if current_user == @post.user %>
@@ -22,5 +27,37 @@
         </div>
       <% end %>
     </div>
+
+    <!-- コメント投稿フォーム -->
+    <div class="card-body border-top pt-4">
+      <h5 class="card-title">コメントを投稿する</h5>
+      <%= form_with model: [@post, @comment], local: true do |f| %>
+        <div class="mb-3">
+          <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントを入力..." %>
+        </div>
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <!-- コメント一覧 -->
+    <div class="card-body border-top pt-4">
+      <h5 class="card-title">コメント一覧</h5>
+      <% @comments.each do |comment| %>
+        <div class="border rounded p-2 mb-2">
+          <strong><%= comment.user.name %></strong>
+          <p><%= simple_format(comment.comment) %></p>
+          <% if @post.user && @post.user.name.present? %>
+          <i class="bi bi-person"></i> ユーザー名: <%= @post.user.name %>
+          <% else %>
+          <i class="bi bi-person"></i> ユーザー名: 名無し
+          <% end %>
+          <small class="text-muted"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+          <% if comment.user == current_user %>
+            <%= button_to "削除", post_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-danger" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
