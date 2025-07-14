@@ -1,24 +1,44 @@
-# README
+# TGU掲示板アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 1. アプリの概要
+このアプリは、私が通っている大学の掲示板として開発したWebアプリケーションです。
+ログインするだけで、大学生活に関する情報を手軽に投稿・共有できます。
 
-Things you may want to cover:
+もともと大学には掲示板のようなサイトがありましたが、全国規模で利用されていたため、荒らし行為が発生しても運営が対応しきれない状況でした。
+そこで、私自身が投稿を管理できる仕組みを作ることで、より安心して利用できる掲示板を提供したいと考え、このアプリを開発しました。
 
-* Ruby version
+---
 
-* System dependencies
+## 2. アプリの開き方
 
-* Configuration
+ブラウザで以下にアクセス
 
-* Database creation
+http://tgu-site.onrender.com
 
-* Database initialization
+---
 
-* How to run the test suite
+## 3. 使用技術
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby: 3.0.7
+- Rails: 7.0.8
+- PostgreSQL
+- Bootstrap 5
+- Docker
 
-* Deployment instructions
+---
 
-* ...
+## 4. 機能一覧
+
+- ユーザー登録 / ログイン / ログアウト (deviseを使用)
+- 投稿のCRUD機能
+- コメントの投稿 / 削除
+- バリデーションエラーメッセージ表示
+- ログイン中ユーザーのみ操作可能な認可
+
+---
+
+## 5. 今後の改善予定
+
+- いいね機能
+- フォロー機能
+- 検索機能
