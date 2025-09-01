@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
   resources :users,only: [:edit,:show]
+  post '/home/guest_sign_in', to: 'home#guest_sign_in'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
