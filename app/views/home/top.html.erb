@@ -1,3 +1,4 @@
+<% content_for :description, "東北学院大サークルの最新情報を交換できる掲示板です" %>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-11 col-sm-10 col-md-8 col-lg-6">
@@ -9,10 +10,10 @@
             アプリの詳細は右上にあるAboutから見ることができます。<br>
             新規の方は下のサインアップから新規登録してください。
           </p>
-          <div class="d-flex justify-content-center gap-3">
+          <div class="d-flex justify-content-center flex-wrap gap-3">
             <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-lg" %>
             <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-success btn-lg" %>
-            <br/>
+            <div class="w-100 my-1"></div> <!-- ここで改行と上下余白 -->
             <%= button_to "ゲストログイン", home_guest_sign_in_path, method: :post, class: "btn btn-secondary btn-lg" %>
           </div>
         </div>
