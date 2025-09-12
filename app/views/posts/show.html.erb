@@ -21,10 +21,15 @@
     <!-- フッター（編集・削除） -->
     <div class="card-footer text-muted d-flex justify-content-between">
       <span>投稿日: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-      <% if current_user == @post.user %>
         <div>
+          <% if @post.favorited_by?(current_user) %>
+            <%= link_to "★", post_favorites_path(@post), data: {turbo_method: :delete}, class: "btn btn-sm btn-warning me-2" %>
+          <% else %>
+            <%= link_to "☆", post_path(@post), method: :post, class: "btn btn-sm btn-outline-warning me-2" %>
+          <% end %>
+        <% if current_user == @post.user %>
           <%= link_to "編集", edit_post_path(@post), class: "btn btn-sm btn-outline-success me-2" %>
-          <%= button_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-danger" %>
+          <%= link_to "削除", post_path(@post), data: { turbo_method: :delete }, class: "btn btn-sm btn-outline-danger" %>
         </div>
       <% end %>
     </div>
@@ -49,7 +54,7 @@
           <p><%= simple_format(comment.comment) %></p>
           <small class="text-muted"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></small>
           <% if comment.user == current_user %>
-            <%= button_to "削除", post_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-danger" %>
+            <%= link_to "削除", post_post_comment_path(comment.post, comment), data: { turbo_method: :delete}, class: "btn btn-sm btn-outline-danger" %>
           <% end %>
         </div>
       <% end %>
