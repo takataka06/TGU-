@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "about" => "home#about", as: "about"
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   resources :users,only: [:edit,:show]
   post '/home/guest_sign_in', to: 'home#guest_sign_in'
